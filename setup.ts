@@ -1,5 +1,5 @@
 import { graphqlHTTP } from "express-graphql";
-import { ErrorRequestHandler, Request, Response, NextFunction } from "express";
+import {  Request, Response, NextFunction } from "express";
 import createError from "http-errors";
 import HttpException from "./utils";
 
