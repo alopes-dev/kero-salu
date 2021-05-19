@@ -2,10 +2,22 @@ import { graphqlHTTP } from "express-graphql";
 import {  Request, Response, NextFunction } from "express";
 import createError from "http-errors";
 import HttpException from "./utils";
+import conection from './src/conection'
+
+import { GraphQLObjectType, GraphQLSchema } from 'graphql';
 
 export const graphqlSetup = (req: Request, res: Response) => {
   graphqlHTTP({
-    schema: schema, //A GraphQLSchema instance from GraphQL.js. A schema must be provided.
+    schema: new GraphQLSchema({
+      query: new GraphQLObjectType({
+        name: 'Query',
+        fields:{}
+      }) ,
+      mutation:new GraphQLObjectType({
+        name: 'Mutaion',
+        fields:{}
+      }),
+  }), 
     graphiql: true,
     context: { req, res },
     customFormatErrorFn: ({ message, originalError }) => {
@@ -34,18 +46,12 @@ export const errorHandler = (
   res.render("error");
 };
 
-export const dbConnection = () => {
-  // try {
-  //   await sequelize.authenticate();
-  //   console.log('Connection has been established successfully.');
-  // } catch (error) {
-  //   console.error('Unable to connect to the database:', error);
-  // }
-  db.authenticate()
-    .then(() => {
-      console.log("Connection has been established successfully.");
-    })
-    .catch((err) => {
-      console.error("Unable to connect to the database:", err);
-    });
+export const dbConnection = async() => {
+  try {
+    await conection.authenticate();
+    console.log("Connection has been established successfully.");
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+
 };
