@@ -1,27 +1,26 @@
-import  Sequelize from 'sequelize';
-import connection from '../conection';
+import Sequelize from "sequelize";
+import connection from "../conection";
 
-export const  curriculum = connection.define('Curriculo', {
-    Id: {
-        type: Sequelize.STRING(50),
-        defaultValue: Sequelize.UUIDV1,
-        primaryKey: true,
-    },
-    Designacao: {
-        type: Sequelize.STRING(50),
-        allowNull: false,
-    },
-    ResumoProfissional: {
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    CandidatoId: {
-        type: Sequelize.STRING(50),
-        allowNull: true,
-    },
-
-    EstadoId: {
-        type: Sequelize.STRING(50),
-        allowNull: false,
-    },
+export const Curriculum = connection.define("curriculum", {
+  id: {
+    type: Sequelize.STRING(50),
+    defaultValue: Sequelize.UUIDV1,
+    primaryKey: true,
+  },
+  designation: {
+    type: Sequelize.STRING(50),
+    allowNull: false,
+  },
+  resume: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  candidateId: {
+    type: Sequelize.STRING(50),
+    allowNull: true,
+  },
+  statusId: {
+    type: Sequelize.STRING(50),
+    allowNull: false,
+  },
 });

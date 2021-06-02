@@ -1,23 +1,36 @@
-import  Sequelize from 'sequelize';
-import connection from '../conection';
+import { IVacanciesLanguageAttributes } from "@kerotypes/index";
+import Sequelize, { Model, Optional } from "sequelize";
+import connection from "../conection";
 
-export const  VacanciesLanguage = connection.define('OportunidadeIdiomas', {
-    Id: {
-        type: Sequelize.STRING(50),
-        defaultValue: Sequelize.UUIDV1,
-        primaryKey: true,
-    },
-    IdiomaId: {
-        type: Sequelize.STRING(50),
-        allowNull: false,
-    },
-    OportunidadeId: {
-        type: Sequelize.STRING(50),
-        allowNull: true,
-    },
+interface VacanciesLanguageCreationAttributes
+  extends Optional<IVacanciesLanguageAttributes, "id"> {}
 
-    EstadoId: {
-        type: Sequelize.STRING(50),
-        allowNull: false,
+interface VacanciesLanguageInstance
+  extends Model<
+      IVacanciesLanguageAttributes,
+      VacanciesLanguageCreationAttributes
+    >,
+    IVacanciesLanguageAttributes {}
+
+export const VacanciesLanguage = connection.define<VacanciesLanguageInstance>(
+  "VacanciesLanguage",
+  {
+    id: {
+      type: Sequelize.STRING(50),
+      defaultValue: Sequelize.UUIDV1,
+      primaryKey: true,
     },
-});
+    languageId: {
+      type: Sequelize.STRING(50),
+      allowNull: false,
+    },
+    vacanciesId: {
+      type: Sequelize.STRING(50),
+      allowNull: true,
+    },
+    statusId: {
+      type: Sequelize.STRING(50),
+      allowNull: false,
+    },
+  }
+);

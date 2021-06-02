@@ -1,74 +1,70 @@
-import  Sequelize from 'sequelize';
-import connection from '../conection';
+import { IVacanciesAttributes } from "@kerotypes/index";
+import Sequelize, { Model, Optional } from "sequelize";
+import connection from "../conection";
 
-export const   Vacancies = connection.define('Oportunidades', {
-    Id: {
-        type: Sequelize.STRING(50),
-        defaultValue: Sequelize.UUIDV1,
-        primaryKey: true,
-    },
-    CargaHoraria: {
-        type: Sequelize.STRING(50),
-        allowNull: true,
-    },
-    DataLimite: {
-        type: Sequelize.STRING(50),
-        allowNull: true,
-    },
-    Salario: {
-        type: Sequelize.FLOAT,
-        allowNull: true,
-    },
+interface VacanciesCreationAttributes
+  extends Optional<IVacanciesAttributes, "id"> {}
 
-    IsFinalizado: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-    },
-    Status: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-    },
-    Cidade: {
-        type: Sequelize.STRING(50),
-        allowNull: true,
-    },
-    EstadoId: {
-        type: Sequelize.STRING(50),
-        allowNull: false,
-    },
-    TipoEmpregoId: {
-        type: Sequelize.STRING(50),
-        allowNull: false,
-    },
-    CargoId: {
-        type: Sequelize.STRING(50),
-        allowNull: false,
-    },
-    TipoFormacaoId: {
-        type: Sequelize.STRING(50),
-        allowNull: false,
-    },
-    TipoFuncaoId: {
-        type: Sequelize.STRING(50),
-        allowNull: false,
-    },
-    ProvinciaId: {
-        type: Sequelize.STRING(50),
-    },
-    EmpresaId: {
-        type: Sequelize.STRING(50),
-    },
-    NacionalidadeId: {
-        type: Sequelize.STRING(50),
-    },
-    Experiencia: {
-        type: Sequelize.STRING(50),
-    },
-    NumVagas: {
-        type: Sequelize.STRING(50),
-        allowNull: false,
-    },
-    Detalhes: {
-        type: Sequelize.STRING(50),
-    },
+interface VacanciesInstance
+  extends Model<IVacanciesAttributes, VacanciesCreationAttributes>,
+    IVacanciesAttributes {}
+
+export const Vacancies = connection.define<VacanciesInstance>("Vacancies", {
+  id: {
+    type: Sequelize.STRING(50),
+    defaultValue: Sequelize.UUIDV1,
+    primaryKey: true,
+  },
+  limitHours: {
+    type: Sequelize.STRING(50),
+    allowNull: true,
+  },
+  limitDate: {
+    type: Sequelize.STRING(50),
+    allowNull: true,
+  },
+  salary: {
+    type: Sequelize.FLOAT,
+    allowNull: true,
+  },
+  isDone: {
+    type: Sequelize.INTEGER,
+    allowNull: true,
+  },
+  status: {
+    type: Sequelize.INTEGER,
+    allowNull: true,
+  },
+  city: {
+    type: Sequelize.STRING(50),
+    allowNull: true,
+  },
+  functionTypeId: {
+    type: Sequelize.STRING(50),
+    allowNull: false,
+  },
+  formationTypeId: {
+    type: Sequelize.STRING(50),
+    allowNull: false,
+  },
+
+  provinceId: {
+    type: Sequelize.STRING(50),
+  },
+  companyId: {
+    type: Sequelize.STRING(50),
+  },
+  nationalityId: {
+    type: Sequelize.STRING(50),
+  },
+  officeId: {
+    type: Sequelize.STRING(50),
+  },
+  numVacancies: {
+    type: Sequelize.STRING(50),
+    allowNull: false,
+  },
+  details: {
+    type: Sequelize.STRING(50),
+  },
 });

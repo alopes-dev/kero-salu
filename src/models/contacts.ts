@@ -1,24 +1,30 @@
-import  Sequelize from 'sequelize';
-import connection from '../conection';
+import { IContactAttributes } from "@kerotypes/index";
+import Sequelize, { Model, Optional } from "sequelize";
+import connection from "../conection";
 
-export const  Contacto = connection.define('Contacto', {
-    Id: {
-        type: Sequelize.STRING(50),
-        defaultValue: Sequelize.UUIDV1,
-        primaryKey: true,
-    },
-    Telefone: {
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
+interface ContactCreationAttributes
+  extends Optional<IContactAttributes, "id"> {}
 
-    Email: {
-        type: Sequelize.STRING(50),
-        allowNull: false,
-    },
+interface ContactInstance
+  extends Model<IContactAttributes, ContactCreationAttributes>,
+    IContactAttributes {}
 
-    EstadoId: {
-        type: Sequelize.STRING(50),
-        allowNull: false,
-    },
+export const Contacts = connection.define<ContactInstance>("Contacts", {
+  id: {
+    type: Sequelize.STRING(50),
+    defaultValue: Sequelize.UUIDV1,
+    primaryKey: true,
+  },
+  phone: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  email: {
+    type: Sequelize.STRING(50),
+    allowNull: false,
+  },
+  statusId: {
+    type: Sequelize.STRING(50),
+    allowNull: true,
+  },
 });

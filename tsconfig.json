@@ -1,13 +1,31 @@
 {
   "compilerOptions": {
-    "lib": ["es5", "es6"],
-    "target": "es5",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "outDir": "./build",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "sourceMap": true,
-    "esModuleInterop": true
-  }
+    "target": "es2017",                          
+    "module": "commonjs",                     
+    "lib": ["es6"],                             
+    "allowJs": true,                       
+    "outDir": "./dist",                        
+    "rootDir": "./src",                       
+    "removeComments": true,                
+    "typeRoots": [
+      "src/node_modules/@types",
+      "./src/@types"
+    ],                          
+    "esModuleInterop": true,                  
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,        
+    "emitDecoratorMetadata": true,         
+    "skipLibCheck": true,                     
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@schemas/*": ["src/schemas/*"],
+      "@models/*": ["./src/models/*"],
+      "@kerotypes/*": ["src/kero-types/*"],
+      "@controllers/*": ["./src/controllers/*"],
+    }
+  },
+  "include": [
+    "src/**/*"
+  ]
 }

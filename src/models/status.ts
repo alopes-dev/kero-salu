@@ -1,14 +1,14 @@
-import  Sequelize from 'sequelize';
-import connection from '../conection';
+import Sequelize from "sequelize";
+import connection from "../conection";
 
-export const  Status = connection.define('estados', {
-    Id: {
-        type: Sequelize.STRING(50),
-        defaultValue: Sequelize.UUIDV1,
-        primaryKey: true
-    },
-    Designacao: {
-        type: Sequelize.STRING,
-        allowNull: false
-    }
+export const Status = connection.define("status", {
+  id: {
+    type: Sequelize.STRING(50),
+    defaultValue: Sequelize.UUIDV1,
+    primaryKey: true,
+  },
+  designation: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
 });
