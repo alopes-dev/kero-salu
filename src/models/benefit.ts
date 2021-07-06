@@ -2,7 +2,7 @@ import Sequelize from "sequelize";
 import connection from "../conection";
 
 export const Benefit = connection.define("Benefits", {
-  Id: {
+  id: {
     type: Sequelize.STRING(50),
     defaultValue: Sequelize.UUIDV1,
     primaryKey: true,

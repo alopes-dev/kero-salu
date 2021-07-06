@@ -108,7 +108,7 @@ export const Update = async ({ id, ...rest }: IPersonAttributes) => {
   );
 };
 
-const checkUserByEmail = async (email: string) => {
+export const checkUserByEmail = async (email: string) => {
   const userExists = await Users.findOne({
     where: { email },
   });

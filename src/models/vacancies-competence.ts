@@ -27,8 +27,4 @@ export const VacanciesCompetence =
       type: Sequelize.STRING(50),
       allowNull: true,
     },
-    statusId: {
-      type: Sequelize.STRING(50),
-      allowNull: false,
-    },
   });

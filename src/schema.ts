@@ -61,9 +61,12 @@ import {
   FunctionTypesMutation,
   VacanciesLanguageMutation,
   VacanciesLanguageQueryResolve,
+  SessionMutation,
+  SessionQueryResolve,
 } from "@schemas/index";
 
 export const Query = {
+  ...SessionQueryResolve,
   ...FunctionTypesQueryResolve,
   ...VacanciesLanguageQueryResolve,
   ...VacanciesCompetenceQueryResolve,
@@ -99,6 +102,7 @@ export const Query = {
 
 export const Mutation = {
   ...FunctionTypesMutation,
+  ...SessionMutation,
   ...VacanciesLanguageMutation,
   ...VacanciesCompetenceMutation,
   ...VacanciesBenefitMutation,

@@ -62,19 +62,21 @@ export interface IVacanciesAttributes extends ITimestamp {
   salary: string;
   limitDate: string;
   isDone: string;
+  showSalary: string;
   city: string;
-  employerTypeId?: string;
+  jobsTypeId?: string;
   functionTypeId?: string;
   formationTypeId?: string;
   provinceId: string;
   nationalityId: string;
   experience?: string;
   numVacancies: string;
+  skills: string;
   details: string;
   officeId: string;
   companyId: string;
-  statusId?: string;
   status?: number;
+  areas?: Array<string>;
   languages?: Array<string>;
   benefits?: Array<string>;
   competences?: Array<string>;
@@ -94,9 +96,36 @@ export interface IVacanciesBenefitAttributes extends ITimestamp {
   statusId?: string;
 }
 
+export interface IVacanciesAreaAttributes extends ITimestamp {
+  id?: string;
+  areaId: string;
+  vacanciesId: string;
+  statusId?: string;
+}
+
+export interface IVacanciesSkillAttributes extends ITimestamp {
+  id?: string;
+  skillId: string;
+  vacanciesId: string;
+  statusId?: string;
+}
+
 export interface IVacanciesCompetenceAttributes extends ITimestamp {
   id?: string;
   competenceId: string;
   vacanciesId: string;
   statusId?: string;
+}
+
+export interface ICompanyAttributes extends ITimestamp {
+  id?: string;
+  designation: string;
+  nif: string;
+  socialReason?: string;
+  mission?: string;
+  phone: string;
+  creationDate?: string;
+  password?: string;
+  email?: string;
+  vision?: string;
 }

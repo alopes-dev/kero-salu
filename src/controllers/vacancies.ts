@@ -6,9 +6,12 @@ import { v4 as uuid } from "uuid";
 import { Store as addVacanciesLanguage } from "@controllers/vacancies-language";
 import { Store as addVacanciesBenefit } from "@controllers/vacancies-benefit";
 import { Store as addVacancieCompetence } from "@controllers/vacancies-competence";
+import { Store as addVacancieArea } from "@controllers/vacancies-area";
 
 export const FindAll = async () => {
-  return await Vacancies.findAll();
+  return await Vacancies.findAll({
+    where: { status: 1 },
+  });
 };
 
 export const FindOne = async (id: string) => {
@@ -19,7 +22,7 @@ export const FindOne = async (id: string) => {
 
 export const Store = async (model: IVacanciesAttributes) => {
   const t = await connection.transaction();
-  const { languages, benefits, competences } = model;
+  const { languages, benefits, competences, areas, skills } = model;
 
   const sysdate = CurrentDate();
   try {
@@ -56,6 +59,15 @@ export const Store = async (model: IVacanciesAttributes) => {
       });
     });
 
+    areas.forEach(async (areaId) => {
+      console.log(areaId);
+      await addVacancieArea({
+        id: uuid(),
+        areaId,
+        vacanciesId: id,
+      });
+    });
+
     await t.commit();
 
     return vacancies;
@@ -75,14 +87,25 @@ export const Update = async ({ id, ...rest }: IVacanciesAttributes) => {
   );
 };
 
+export const CancelVacance = async (id: string) => {
+  return await Vacancies.update(
+    {
+      status: 0,
+      updatedAt: CurrentDate(),
+    },
+    { where: { id } }
+  );
+};
+
 const getAttributes = (model: IVacanciesAttributes) => {
   const {
     limitHours,
     salary,
     limitDate,
     isDone,
+    showSalary,
     city,
-    employerTypeId,
+    jobsTypeId,
     functionTypeId,
     formationTypeId,
     provinceId,
@@ -92,7 +115,7 @@ const getAttributes = (model: IVacanciesAttributes) => {
     details,
     officeId,
     companyId,
-    statusId,
+    skills,
     status,
   } = model;
 
@@ -101,8 +124,9 @@ const getAttributes = (model: IVacanciesAttributes) => {
     salary,
     limitDate,
     isDone,
+    showSalary,
     city,
-    employerTypeId,
+    jobsTypeId,
     functionTypeId,
     formationTypeId,
     provinceId,
@@ -110,9 +134,9 @@ const getAttributes = (model: IVacanciesAttributes) => {
     experience,
     numVacancies,
     details,
+    skills,
     officeId,
     companyId,
-    statusId,
     status,
   };
 };

@@ -4,9 +4,8 @@ import {
   GraphQLString,
 } from "graphql";
 
-import { FindOne } from "@controllers/status";
-
-import { StatusType } from "@schemas/status/types";
+import { FindOne } from "@controllers/language";
+import { LanguageType } from "@schemas/language/types";
 
 export const VacanciesLanguageType = new GraphQLObjectType({
   name: "VacanciesLanguageCollection",
@@ -14,11 +13,10 @@ export const VacanciesLanguageType = new GraphQLObjectType({
     id: { type: GraphQLString },
     languageId: { type: GraphQLString },
     vacanciesId: { type: GraphQLString },
-    statusId: { type: GraphQLString },
-    status: {
-      type: StatusType,
+    language: {
+      type: LanguageType,
       async resolve(prev, args) {
-        return await FindOne(prev.statusId);
+        return await FindOne(prev.languageId);
       },
     },
     createdAt: { type: GraphQLString },

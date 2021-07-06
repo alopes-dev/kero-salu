@@ -11,6 +11,7 @@ import {
   createErrorHandler,
   errorHandler,
 } from "./setup";
+import { verifyToken } from "./middlewares/verify-token";
 
 const port = process.env.PORT || "5500";
 
@@ -20,7 +21,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use("/", graphqlSetup);
+app.use(graphqlSetup);
 
 dbConnection();
 

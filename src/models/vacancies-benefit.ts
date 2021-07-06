@@ -28,9 +28,5 @@ export const VacanciesBenefit = connection.define<VacanciesBenefitInstance>(
       type: Sequelize.STRING(50),
       allowNull: true,
     },
-    statusId: {
-      type: Sequelize.STRING(50),
-      allowNull: false,
-    },
   }
 );

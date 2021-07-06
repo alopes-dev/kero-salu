@@ -29,3 +29,4 @@ export * from "@schemas/vacancies-benefit";
 export * from "@schemas/vacancies-competence";
 export * from "@schemas/vacancies-language";
 export * from "@schemas/function-type";
+export * from "@schemas/session";

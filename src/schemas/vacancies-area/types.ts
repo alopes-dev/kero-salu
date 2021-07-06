@@ -4,20 +4,21 @@ import {
   GraphQLString,
 } from "graphql";
 
-import { FindOne } from "@controllers/competence";
+import { FindOne } from "@controllers/area";
 
-import { CompetenceType } from "@schemas/competence/types";
+import { AreaType } from "@schemas/area/types";
 
-export const VacanciesCompetenceType = new GraphQLObjectType({
-  name: "VacanciesCompetenceCollection",
+export const VacanciesAreaType = new GraphQLObjectType({
+  name: "VacanciesAreaCollection",
   fields: () => ({
     id: { type: GraphQLString },
-    competenceId: { type: GraphQLString },
+    areaId: { type: GraphQLString },
     vacanciesId: { type: GraphQLString },
-    competence: {
-      type: CompetenceType,
+    statusId: { type: GraphQLString },
+    area: {
+      type: AreaType,
       async resolve(prev, args) {
-        return await FindOne(prev.competenceId);
+        return await FindOne(prev.areaId);
       },
     },
     createdAt: { type: GraphQLString },
@@ -25,11 +26,11 @@ export const VacanciesCompetenceType = new GraphQLObjectType({
   }),
 });
 
-export const VacanciesCompetenceInput = new GraphQLInputObjectType({
-  name: "VacanciesCompetenceInput",
+export const VacanciesAreaInput = new GraphQLInputObjectType({
+  name: "VacanciesAreaInput",
   fields: () => ({
     id: { type: GraphQLString },
-    competenceId: { type: GraphQLString },
+    areaId: { type: GraphQLString },
     vacanciesId: { type: GraphQLString },
     statusId: { type: GraphQLString },
     createdAt: { type: GraphQLString },
@@ -37,6 +38,6 @@ export const VacanciesCompetenceInput = new GraphQLInputObjectType({
   }),
 });
 
-export type VacanciesCompetenceArgs = {
+export type VacanciesAreaArgs = {
   id: string;
 };

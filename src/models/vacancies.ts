@@ -15,6 +15,10 @@ export const Vacancies = connection.define<VacanciesInstance>("Vacancies", {
     defaultValue: Sequelize.UUIDV1,
     primaryKey: true,
   },
+  status: {
+    type: Sequelize.INTEGER,
+    allowNull: true,
+  },
   limitHours: {
     type: Sequelize.STRING(50),
     allowNull: true,
@@ -31,13 +35,25 @@ export const Vacancies = connection.define<VacanciesInstance>("Vacancies", {
     type: Sequelize.INTEGER,
     allowNull: true,
   },
-  status: {
+  showSalary: {
     type: Sequelize.INTEGER,
+    allowNull: true,
+  },
+  jobsTypeId: {
+    type: Sequelize.STRING(50),
     allowNull: true,
   },
   city: {
     type: Sequelize.STRING(50),
     allowNull: true,
+  },
+  experience: {
+    type: Sequelize.STRING(50),
+    allowNull: true,
+  },
+  skills: {
+    type: Sequelize.STRING(50),
+    allowNull: false,
   },
   functionTypeId: {
     type: Sequelize.STRING(50),
@@ -47,7 +63,6 @@ export const Vacancies = connection.define<VacanciesInstance>("Vacancies", {
     type: Sequelize.STRING(50),
     allowNull: false,
   },
-
   provinceId: {
     type: Sequelize.STRING(50),
   },

@@ -11,8 +11,4 @@ export const Area = connection.define("Areas", {
     type: Sequelize.STRING(50),
     allowNull: false,
   },
-  statusId: {
-    type: Sequelize.STRING(50),
-    allowNull: true,
-  },
 });

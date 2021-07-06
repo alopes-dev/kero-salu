@@ -1,7 +1,15 @@
-import Sequelize from "sequelize";
+import { ICompanyAttributes } from "@kerotypes/index";
+import Sequelize, { Model, Optional } from "sequelize";
 import connection from "../conection";
 
-export const Company = connection.define("Company", {
+interface CompanyCreationAttributes
+  extends Optional<ICompanyAttributes, "id"> {}
+
+interface CompanyInstance
+  extends Model<ICompanyAttributes, CompanyCreationAttributes>,
+    ICompanyAttributes {}
+
+export const Company = connection.define<CompanyInstance>("Company", {
   id: {
     type: Sequelize.STRING(50),
     defaultValue: Sequelize.UUIDV1,
@@ -35,9 +43,5 @@ export const Company = connection.define("Company", {
   vision: {
     type: Sequelize.STRING(50),
     allowNull: true,
-  },
-  statusId: {
-    type: Sequelize.STRING(50),
-    allowNull: false,
   },
 });

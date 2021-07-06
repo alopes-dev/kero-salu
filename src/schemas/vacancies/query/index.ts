@@ -1,4 +1,4 @@
-import { FindOne, FindAll } from "@controllers/vacancies";
+import { FindOne, FindAll, CancelVacance } from "@controllers/vacancies";
 import { GraphQLList, GraphQLString } from "graphql";
 import { VacanciesType } from "../types";
 
@@ -11,9 +11,16 @@ export const VacanciesQueryResolve = {
   },
   Vacancies: {
     type: VacanciesType,
-    args: { Id: { type: GraphQLString } },
+    args: { id: { type: GraphQLString } },
     async resolve(_, args) {
       return await FindOne(args.id);
+    },
+  },
+  CancelVacancies: {
+    type: VacanciesType,
+    args: { id: { type: GraphQLString } },
+    async resolve(_, args) {
+      return await CancelVacance(args.id);
     },
   },
 };

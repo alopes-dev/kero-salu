@@ -4,9 +4,8 @@ import {
   GraphQLString,
 } from "graphql";
 
-import { FindOne } from "@controllers/status";
-
-import { StatusType } from "@schemas/status/types";
+import { FindOne } from "@controllers/benefit";
+import { BenefitType } from "@schemas/benefits/types";
 
 export const VacanciesBenefitType = new GraphQLObjectType({
   name: "VacanciesBenefitCollection",
@@ -15,10 +14,10 @@ export const VacanciesBenefitType = new GraphQLObjectType({
     benefitId: { type: GraphQLString },
     vacanciesId: { type: GraphQLString },
     statusId: { type: GraphQLString },
-    status: {
-      type: StatusType,
+    benefit: {
+      type: BenefitType,
       async resolve(prev, args) {
-        return await FindOne(prev.statusId);
+        return await FindOne(prev.benefitId);
       },
     },
     createdAt: { type: GraphQLString },
