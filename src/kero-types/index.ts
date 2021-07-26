@@ -129,3 +129,11 @@ export interface ICompanyAttributes extends ITimestamp {
   email?: string;
   vision?: string;
 }
+
+export interface ICandidatureAttributes extends ITimestamp {
+  id?: string;
+  candidateId: string;
+  vacanciesId: string;
+  isAnalized?: Number;
+  status?: number;
+}

@@ -30,3 +30,4 @@ export * from "@schemas/vacancies-competence";
 export * from "@schemas/vacancies-language";
 export * from "@schemas/function-type";
 export * from "@schemas/session";
+export * from "@schemas/candidature";

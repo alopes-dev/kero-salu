@@ -10,6 +10,11 @@ export interface ISession {
   provider: number;
 }
 
+export interface IResetPasswor {
+  userName: string;
+  password: string;
+}
+
 export const Session = async ({ password, provider, userName }: ISession) => {
   try {
     const userExist = await UserAccount.findOne({ where: { userName } });
@@ -55,7 +60,7 @@ export const RecoverSession = async (token: string) => {
   }
 };
 
-export const ResetPassword = async ({ password, userName }: ISession) => {
+export const ResetPassword = async ({ password, userName }: IResetPasswor) => {
   const userExist = await UserAccount.findOne({ where: { userName } });
 
   if (!userExist) throw new Error("Usuario não encontrado...");

@@ -19,13 +19,6 @@ export const CompanyType = new GraphQLObjectType({
     vision: { type: GraphQLString },
     activitySectorId: { type: GraphQLString },
     phone: { type: GraphQLString },
-    statusId: { type: GraphQLString },
-    status: {
-      type: StatusType,
-      async resolve(prev, args) {
-        return await FindOne(prev.statusId);
-      },
-    },
     createdAt: { type: GraphQLString },
     updatedAt: { type: GraphQLString },
   }),

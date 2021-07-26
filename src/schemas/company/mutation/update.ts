@@ -10,6 +10,7 @@ export const UpdateCompany = {
   },
   async resolve(_, { input }) {
     try {
+      console.log(input);
       const { id, ...Company } = input;
 
       if (!id) throw Error("must pass id of Company to update");

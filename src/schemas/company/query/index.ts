@@ -11,7 +11,7 @@ export const CompanyQueryResolve = {
   },
   Company: {
     type: CompanyType,
-    args: { Id: { type: GraphQLString } },
+    args: { id: { type: GraphQLString } },
     async resolve(_, args) {
       return await FindOne(args.id);
     },

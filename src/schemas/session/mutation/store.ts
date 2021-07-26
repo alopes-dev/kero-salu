@@ -10,6 +10,7 @@ export const StoreSession = {
     },
   },
   async resolve(_, { input }) {
+    console.log(input);
     return await Session(input);
   },
 };
@@ -20,7 +21,6 @@ export const RecoverSessions = {
     token: { type: GraphQLString },
   },
   async resolve(args, { input }) {
-    console.log(input);
     return await RecoverSession(input.token);
   },
 };
