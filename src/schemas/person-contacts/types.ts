@@ -4,9 +4,9 @@ import {
   GraphQLString,
 } from "graphql";
 
-import { FindOne } from "@controllers/status";
+import { FindOne } from "@controllers/contacts";
 
-import { StatusType } from "@schemas/status/types";
+import { ContactsType } from "@schemas/contacts/types";
 
 export const PersonContactType = new GraphQLObjectType({
   name: "PersonContactCollection",
@@ -14,11 +14,10 @@ export const PersonContactType = new GraphQLObjectType({
     id: { type: GraphQLString },
     contactId: { type: GraphQLString },
     personId: { type: GraphQLString },
-    statusId: { type: GraphQLString },
-    status: {
-      type: StatusType,
+    contact: {
+      type: ContactsType,
       async resolve(prev, args) {
-        return await FindOne(prev.statusId);
+        return await FindOne(prev.contactId);
       },
     },
     createdAt: { type: GraphQLString },

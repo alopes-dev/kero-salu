@@ -6,8 +6,12 @@ export interface IPersonLanguage {
   statusId?: string;
 }
 
-export const FindAll = async () => {
-  return await PersonLanguage.findAll();
+export const FindAll = async (personId: string) => {
+  return await PersonLanguage.findAll({
+    where: {
+      personId,
+    },
+  });
 };
 
 export const FindOne = async (id: string) => {
@@ -34,4 +38,8 @@ export const Update = async ({ id, ...rest }: IPersonLanguage) => {
     },
     { where: { id } }
   );
+};
+
+export const Delete = async (id: string) => {
+  return await PersonLanguage.destroy({ where: { id } });
 };

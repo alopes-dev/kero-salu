@@ -11,7 +11,7 @@ export const CandidatureQueryResolve = {
   },
   Candidature: {
     type: CandidatureType,
-    args: { Id: { type: GraphQLString } },
+    args: { id: { type: GraphQLString } },
     async resolve(_, args) {
       return await FindOne(args.id);
     },

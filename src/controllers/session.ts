@@ -37,7 +37,6 @@ export const Session = async ({ password, provider, userName }: ISession) => {
     };
 
     const token = jwt.sign({ user }, process.env.SECRET_KEY);
-
     return {
       token,
       user,

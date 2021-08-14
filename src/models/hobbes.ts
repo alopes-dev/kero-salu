@@ -11,16 +11,8 @@ export const Hobbes = connection.define("Hobbes", {
     type: Sequelize.STRING(50),
     allowNull: false,
   },
-  percentage: {
+  candidateId: {
     type: Sequelize.STRING(50),
     allowNull: true,
-  },
-  description: {
-    type: Sequelize.STRING(50),
-    allowNull: true,
-  },
-  statusId: {
-    type: Sequelize.STRING(50),
-    allowNull: false,
   },
 });

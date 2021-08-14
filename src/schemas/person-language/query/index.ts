@@ -5,8 +5,9 @@ import { PersonLanguageType } from "../types";
 export const PersonLanguageQueryResolve = {
   PersonLanguageList: {
     type: new GraphQLList(PersonLanguageType),
-    async resolve(_, __) {
-      return await FindAll();
+    args: { id: { type: GraphQLString } },
+    async resolve(_, args) {
+      return await FindAll(args.id);
     },
   },
   PersonLanguage: {

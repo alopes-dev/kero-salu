@@ -9,19 +9,14 @@ export const PersonLanguage = connection.define("PersonLanguage", {
   },
   percentage: {
     type: Sequelize.STRING(50),
-    allowNull: false,
+    allowNull: true,
   },
-  laguageId: {
+  languageId: {
     type: Sequelize.STRING(50),
     allowNull: false,
   },
   personId: {
     type: Sequelize.STRING(50),
     allowNull: true,
-  },
-
-  statusId: {
-    type: Sequelize.STRING(50),
-    allowNull: false,
   },
 });

@@ -65,9 +65,24 @@ import {
   SessionQueryResolve,
   CandidatureMutation,
   CandidatureQueryResolve,
+  FavoriteJobsMutation,
+  FavoriteJobsQueryResolve,
+  ExperienceMutation,
+  ExperienceQueryResolve,
+  CurseMutation,
+  AcademyMutation,
+  CurseQueryResolve,
+  AcademyQueryResolve,
+  SkillMutation,
+  SkillQueryResolve,
 } from "@schemas/index";
 
 export const Query = {
+  ...SkillQueryResolve,
+  ...CurseQueryResolve,
+  ...AcademyQueryResolve,
+  ...ExperienceQueryResolve,
+  ...FavoriteJobsQueryResolve,
   ...CandidatureQueryResolve,
   ...SessionQueryResolve,
   ...FunctionTypesQueryResolve,
@@ -104,6 +119,11 @@ export const Query = {
 };
 
 export const Mutation = {
+  ...SkillMutation,
+  ...CurseMutation,
+  ...AcademyMutation,
+  ...FavoriteJobsMutation,
+  ...ExperienceMutation,
   ...CandidatureMutation,
   ...FunctionTypesMutation,
   ...SessionMutation,

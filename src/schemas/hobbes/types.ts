@@ -13,15 +13,7 @@ export const HobbesType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLString },
     designation: { type: GraphQLString },
-    percentage: { type: GraphQLString },
-    description: { type: GraphQLString },
-    statusId: { type: GraphQLString },
-    status: {
-      type: StatusType,
-      async resolve(prev, args) {
-        return await FindOne(prev.statusId);
-      },
-    },
+    candidateId: { type: GraphQLString },
     createdAt: { type: GraphQLString },
     updatedAt: { type: GraphQLString },
   }),
@@ -32,9 +24,7 @@ export const HobbesInput = new GraphQLInputObjectType({
   fields: () => ({
     id: { type: GraphQLString },
     designation: { type: GraphQLString },
-    percentage: { type: GraphQLString },
-    description: { type: GraphQLString },
-    statusId: { type: GraphQLString },
+    candidateId: { type: GraphQLString },
   }),
 });
 

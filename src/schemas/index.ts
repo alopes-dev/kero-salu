@@ -31,3 +31,8 @@ export * from "@schemas/vacancies-language";
 export * from "@schemas/function-type";
 export * from "@schemas/session";
 export * from "@schemas/candidature";
+export * from "@schemas/favorite-jobs";
+export * from "@schemas/experience";
+export * from "@schemas/academy";
+export * from "@schemas/curse";
+export * from "@schemas/skill";

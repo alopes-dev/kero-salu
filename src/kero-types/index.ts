@@ -34,9 +34,8 @@ export interface IPersonAttributes extends ITimestamp {
   firstName: string;
   lastName: string;
   birthDate: string;
-  isCandidate: number;
-  address: string;
-  statusId: string;
+  isCandidate?: number;
+  address?: string;
   userAccount?: IUserAccount;
   document?: IDocumentsAttributes;
   contact?: IContactAttributes;
@@ -46,6 +45,13 @@ export interface IPersonContactAttributes extends ITimestamp {
   id?: string;
   contactId: string;
   personId: string;
+  statusId?: string;
+}
+
+export interface IFavoriteJobsAttributes extends ITimestamp {
+  id?: string;
+  vacanciesId: string;
+  candidateId: string;
   statusId?: string;
 }
 
@@ -136,4 +142,5 @@ export interface ICandidatureAttributes extends ITimestamp {
   vacanciesId: string;
   isAnalized?: Number;
   status?: number;
+  persons?: Array<IPersonAttributes>;
 }

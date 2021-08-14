@@ -31,6 +31,8 @@ import { UserAccountType } from "@schemas/user-account/types";
 import { UserAccount } from "@models/user-account";
 import { JobsType } from "@models/jobs-type";
 import { JobsTypeType } from "@schemas/jobs-type/types";
+import { CandidatureType } from "@schemas/candidature/types";
+import { Candidature } from "@models/candidature";
 
 export const VacanciesType = new GraphQLObjectType({
   name: "VacanciesCollection",
@@ -133,6 +135,14 @@ export const VacanciesType = new GraphQLObjectType({
       type: NationalityType,
       async resolve(prev, args) {
         return await getNationality(prev.nationalityId);
+      },
+    },
+    candidatures: {
+      type: GraphQLList(CandidatureType),
+      async resolve(prev, args) {
+        return await Candidature.findAll({
+          where: { vacanciesId: prev.id },
+        });
       },
     },
     createdAt: { type: GraphQLString },

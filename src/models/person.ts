@@ -35,8 +35,4 @@ export const Person = connection.define<PersonInstance>("Person", {
     type: Sequelize.INTEGER,
     allowNull: true,
   },
-  statusId: {
-    type: Sequelize.STRING(50),
-    allowNull: true,
-  },
 });

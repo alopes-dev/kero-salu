@@ -6,8 +6,12 @@ export interface IHobbes {
   statusId?: string;
 }
 
-export const FindAll = async () => {
-  return await Hobbes.findAll();
+export const FindAll = async (candidateId: string) => {
+  return await Hobbes.findAll({
+    where: {
+      candidateId,
+    },
+  });
 };
 
 export const FindOne = async (id: string) => {

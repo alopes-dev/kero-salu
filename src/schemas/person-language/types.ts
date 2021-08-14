@@ -4,21 +4,21 @@ import {
   GraphQLString,
 } from "graphql";
 
-import { FindOne } from "@controllers/status";
+import { FindOne } from "@controllers/language";
 
-import { StatusType } from "@schemas/status/types";
+import { LanguageType } from "@schemas/language/types";
 
 export const PersonLanguageType = new GraphQLObjectType({
   name: "PersonLanguageCollection",
   fields: () => ({
     id: { type: GraphQLString },
-    LanguageId: { type: GraphQLString },
+    languageId: { type: GraphQLString },
     personId: { type: GraphQLString },
     statusId: { type: GraphQLString },
-    status: {
-      type: StatusType,
+    languages: {
+      type: LanguageType,
       async resolve(prev, args) {
-        return await FindOne(prev.statusId);
+        return await FindOne(prev.languageId);
       },
     },
     createdAt: { type: GraphQLString },
@@ -30,7 +30,7 @@ export const PersonLanguageInput = new GraphQLInputObjectType({
   name: "PersonLanguageInput",
   fields: () => ({
     id: { type: GraphQLString },
-    LanguageId: { type: GraphQLString },
+    languageId: { type: GraphQLString },
     personId: { type: GraphQLString },
     percentage: { type: GraphQLString },
     statusId: { type: GraphQLString },

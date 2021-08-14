@@ -28,7 +28,6 @@ export const Store = async (model: IPersonAttributes) => {
     lastName,
     address,
     birthDate,
-    statusId,
     isCandidate,
     document,
     userAccount,
@@ -70,7 +69,6 @@ export const Store = async (model: IPersonAttributes) => {
         lastName,
         birthDate,
         address,
-        statusId,
         isCandidate,
         createdAt: sysdate,
         updatedAt: sysdate,
@@ -90,6 +88,40 @@ export const Store = async (model: IPersonAttributes) => {
 
     await addUsers(userAccount, t);
 
+    await t.commit();
+    return personResponse;
+  } catch (error) {
+    await t.rollback();
+    throw new Error(error.message);
+  }
+};
+
+export const StoreCandidate = async (model: IPersonAttributes) => {
+  const t = await connection.transaction();
+  const { firstName, lastName, birthDate, userAccount } = model;
+
+  try {
+    await checkUserByEmail(userAccount.email);
+    const sysdate = CurrentDate();
+
+    const personResponse = await Person.create(
+      {
+        id: uuid(),
+        firstName,
+        lastName,
+        birthDate,
+        createdAt: sysdate,
+        updatedAt: sysdate,
+      },
+      { transaction: t }
+    );
+    const { id: personId } = personResponse;
+
+    userAccount.userName = firstName + lastName;
+
+    userAccount["provider"] = 1;
+    userAccount.personId = personId;
+    await addUsers(userAccount, t);
     await t.commit();
     return personResponse;
   } catch (error) {

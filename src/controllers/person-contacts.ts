@@ -8,6 +8,10 @@ export const FindAll = async () => {
   return await PersonContacts.findAll();
 };
 
+export const FindAllPersonContacts = async (personId: string) => {
+  return await PersonContacts.findAll({ where: { personId } });
+};
+
 export const FindOne = async (id: string) => {
   return PersonContacts.findOne({
     where: { id },

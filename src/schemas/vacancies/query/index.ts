@@ -26,6 +26,15 @@ export const VacanciesQueryResolve = {
       });
     },
   },
+  CandidatureByVacanciesId: {
+    type: VacanciesType,
+    args: { id: { type: GraphQLString } },
+    async resolve(_, args) {
+      return await Vacancies.findOne({
+        where: { companyId: args.id },
+      });
+    },
+  },
   CancelVacancies: {
     type: VacanciesType,
     args: { id: { type: GraphQLString } },

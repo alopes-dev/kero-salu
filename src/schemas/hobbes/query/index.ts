@@ -5,13 +5,14 @@ import { HobbesType } from "../types";
 export const HobbesQueryResolve = {
   HobbesList: {
     type: new GraphQLList(HobbesType),
-    async resolve(_, __) {
-      return await FindAll();
+    args: { id: { type: GraphQLString } },
+    async resolve(_, args) {
+      return await FindAll(args.id);
     },
   },
   Hobbes: {
     type: HobbesType,
-    args: { Id: { type: GraphQLString } },
+    args: { id: { type: GraphQLString } },
     async resolve(_, args) {
       return await FindOne(args.id);
     },

@@ -10,7 +10,6 @@ export const StoreSession = {
     },
   },
   async resolve(_, { input }) {
-    console.log(input);
     return await Session(input);
   },
 };

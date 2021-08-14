@@ -1,4 +1,4 @@
-import { Store } from "@controllers/person";
+import { Store, StoreCandidate } from "@controllers/person";
 import { PersonInput, PersonType } from "../types";
 
 export const CreatePerson = {
@@ -9,6 +9,6 @@ export const CreatePerson = {
     },
   },
   async resolve(_, { input }) {
-    return await Store(input);
+    return await StoreCandidate(input);
   },
 };
