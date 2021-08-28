@@ -144,3 +144,11 @@ export interface ICandidatureAttributes extends ITimestamp {
   status?: number;
   persons?: Array<IPersonAttributes>;
 }
+
+export interface INotificationAttributes extends ITimestamp {
+  id?: string;
+  description?: string;
+  origin: string;
+  distination: string;
+  action: string;
+}

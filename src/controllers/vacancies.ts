@@ -7,6 +7,7 @@ import { Store as addVacanciesLanguage } from "@controllers/vacancies-language";
 import { Store as addVacanciesBenefit } from "@controllers/vacancies-benefit";
 import { Store as addVacancieCompetence } from "@controllers/vacancies-competence";
 import { Store as addVacancieArea } from "@controllers/vacancies-area";
+import { Store as notify } from "@controllers/notifications";
 
 export const FindAll = async () => {
   return await Vacancies.findAll({
@@ -22,7 +23,7 @@ export const FindOne = async (id: string) => {
 
 export const Store = async (model: IVacanciesAttributes) => {
   const t = await connection.transaction();
-  const { languages, benefits, competences, areas, skills } = model;
+  const { languages, benefits, competences, areas } = model;
 
   const sysdate = CurrentDate();
   try {
@@ -60,12 +61,18 @@ export const Store = async (model: IVacanciesAttributes) => {
     });
 
     areas.forEach(async (areaId) => {
-      console.log(areaId);
       await addVacancieArea({
         id: uuid(),
         areaId,
         vacanciesId: id,
       });
+    });
+    await notify({
+      id: uuid(),
+      origin: model.companyId,
+      distination: "ALL",
+      action: "VIEW",
+      description: "Uma nova vaga criada",
     });
 
     await t.commit();

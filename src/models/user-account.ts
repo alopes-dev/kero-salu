@@ -20,6 +20,10 @@ export const UserAccount = connection.define<UserAccountInstance>(
       type: Sequelize.STRING,
       allowNull: false,
     },
+    photoUrl: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
     email: {
       type: Sequelize.STRING,
       allowNull: false,

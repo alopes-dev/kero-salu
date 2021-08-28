@@ -28,9 +28,10 @@ export const Session = async ({ password, provider, userName }: ISession) => {
       throw new Error("Senha não corresponde...");
 
     const user = {
+      id: userExist.id,
       userName: userExist.userName,
       email: userExist.email,
-      avatarUrl: "/img/pic.jpeg",
+      avatarUrl: userExist.photoUrl,
       provider: userExist.provider,
       personId: userExist.personId,
       companyId: userExist.companyId,
@@ -50,9 +51,21 @@ export const RecoverSession = async (token: string) => {
   try {
     const decodeToke = jwt.decode(token, { complete: true });
 
+    const { user } = decodeToke.payload as any;
+    const userExist = await UserAccount.findOne({
+      where: { userName: user.userName },
+    });
+
     return {
       token,
-      user: decodeToke.payload.user as any,
+      user: {
+        avatarUrl: userExist.photoUrl,
+        companyId: userExist.companyId,
+        email: userExist.email,
+        personId: userExist.personId,
+        provider: userExist.provider,
+        userName: userExist.userName,
+      },
     };
   } catch (error) {
     throw new Error(error.message);

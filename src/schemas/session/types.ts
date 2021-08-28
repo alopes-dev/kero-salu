@@ -8,6 +8,7 @@ import {
 export const userResponseType = new GraphQLObjectType({
   name: "userResponseType",
   fields: () => ({
+    id: { type: GraphQLString },
     provider: { type: GraphQLInt },
     email: { type: GraphQLString },
     userName: { type: GraphQLString },

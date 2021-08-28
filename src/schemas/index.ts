@@ -36,3 +36,5 @@ export * from "@schemas/experience";
 export * from "@schemas/academy";
 export * from "@schemas/curse";
 export * from "@schemas/skill";
+export * from "@schemas/solicitation";
+export * from "@schemas/notifications";

@@ -75,10 +75,16 @@ import {
   AcademyQueryResolve,
   SkillMutation,
   SkillQueryResolve,
+  SolicitationMutation,
+  SolicitationQueryResolve,
+  NotificationsMutation,
+  NotificationsQueryResolve,
 } from "@schemas/index";
 
 export const Query = {
+  ...NotificationsQueryResolve,
   ...SkillQueryResolve,
+  ...SolicitationQueryResolve,
   ...CurseQueryResolve,
   ...AcademyQueryResolve,
   ...ExperienceQueryResolve,
@@ -119,6 +125,8 @@ export const Query = {
 };
 
 export const Mutation = {
+  ...NotificationsMutation,
+  ...SolicitationMutation,
   ...SkillMutation,
   ...CurseMutation,
   ...AcademyMutation,

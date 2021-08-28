@@ -11,7 +11,7 @@ export const UpdateUserAccount = {
   async resolve(_, { input }) {
     try {
       const { id, ...UserAccount } = input;
-
+      console.log(input);
       if (!id) throw Error("must pass id of UserAccount to update");
 
       return await Update({
